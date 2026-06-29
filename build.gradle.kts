@@ -25,3 +25,8 @@ tasks.test {
 application {
     mainClass.set("com.github.bu_mc_server.MainKt")
 }
+
+tasks.named<JavaExec>("run") {
+    workingDir = rootProject.projectDir
+    systemProperty("java.awt.headless", "true")
+}

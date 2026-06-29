@@ -24,5 +24,11 @@ fun main() {
 
     // save image
     val outputFile = File(outputDir, "iceway_map.png")
-    ImageIO.write(image, "png", outputFile)
+    val success = ImageIO.write(image, "png", outputFile)
+
+    if (!success) {
+        throw RuntimeException("Critical Error: ImageIO failed to write the PNG file.")
+    }
+
+    println("SUCCESS: Image generated at ${outputFile.absolutePath}")
 }
