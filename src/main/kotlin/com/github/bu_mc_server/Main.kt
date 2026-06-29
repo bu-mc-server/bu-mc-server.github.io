@@ -1,4 +1,4 @@
-package com.github.bu
+package com.github.bu_mc_server
 
 import java.awt.Color
 import java.awt.image.BufferedImage

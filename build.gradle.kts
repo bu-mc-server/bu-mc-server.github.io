@@ -23,5 +23,5 @@ tasks.test {
 }
 
 application {
-    mainClass.set("com.github.bu-mc-server.MainKt")
+    mainClass.set("com.github.bu_mc_server.MainKt")
 }
