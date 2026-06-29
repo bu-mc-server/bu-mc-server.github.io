@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.3.21"
+    application
 }
 
 group = "com.github.bu-mc-server"
@@ -19,4 +20,8 @@ kotlin {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass.set("com.github.bu-mc-server.MainKt")
 }
