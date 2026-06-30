@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: rgb(30, 30, 30);
+    font-family: sans-serif;
+    color: white;
+}
+
+#map-container {
+    width: 100vw;
+    height: 100vh;
+    cursor: grab;
+}
+
+#map-container:active {
+    cursor: grabbing;
+}
+
+#controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+select {
+    background: #222;
+    color: white;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#popup {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid #555;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 250px;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+#popup h2 { margin: 0 0 10px 0; font-size: 22px; }
+#popup p { margin: 5px 0; font-size: 16px; color: #ccc; }
+#popup span.val { color: white; font-weight: bold; }
+
+#close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#close-btn:hover { color: white; }
+
+.station:hover {
+    stroke: white;
+    stroke-width: 4px;
+    cursor: pointer;
+}

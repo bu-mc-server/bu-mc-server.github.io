@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iceway Map</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: rgb(30, 30, 30); /* Matches the Java2D background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .map-container {
-            width: 100vw;
-            height: 100vh;
-            overflow: auto; /* Allows panning if zoomed in */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        img {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain; /* Ensures the whole map is visible initially */
-        }
-    </style>
+    <title>Iceway Interactive Map</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-<div class="map-container">
-    <img src="iceway_map.png" alt="Generated Iceway Map" />
+
+<div id="controls">
+    <label for="division-select">Division: </label>
+    <select id="division-select">
+        <option value="ALL">All Divisions</option>
+        <option value="WEST">West Division</option>
+        <option value="EAST">East Division</option>
+    </select>
 </div>
+
+<div id="map-container">
+    <svg id="map-svg" width="100%" height="100%"></svg>
+</div>
+
+<div id="popup">
+    <button id="close-btn">&times;</button>
+    <h2 id="p-name">Station Name</h2>
+    <p>Line: <span id="p-line" class="val">Color</span></p>
+    <p>Division: <span id="p-div" class="val">EAST</span></p>
+    <p>Coordinates: <span id="p-coords" class="val">(0, 0)</span></p>
+</div>
+
+<script src="map.js"></script>
 </body>
 </html>

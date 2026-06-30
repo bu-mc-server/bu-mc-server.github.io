@@ -1,46 +1,24 @@
 package com.github.bu_mc_server
 
 import com.github.bu_mc_server.data.Iceway
-import java.awt.BasicStroke
-import java.awt.Color
-import java.awt.Font
-import java.awt.RenderingHints
-import java.awt.image.BufferedImage
+import kotlinx.serialization.json.*
 import java.io.File
-import javax.imageio.ImageIO
 import kotlin.math.max
 import kotlin.math.min
 
-/**
- * TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
- */
 fun main() {
-
     Iceway.init()
 
     val outputDir = File("public")
     if (!outputDir.exists()) outputDir.mkdirs()
-    val outputFile = File(outputDir, "iceway_map.png")
+    val outputFile = File(outputDir, "map_data.json")
 
+    var minX = Int.MAX_VALUE
+    var maxX = Int.MIN_VALUE
+    var minZ = Int.MAX_VALUE
+    var maxZ = Int.MIN_VALUE
 
-    // gather bounds
-    var minX = Iceway.stations.minByOrNull { it.x }?.x ?: run {
-        println("Really weird error")
-        0
-    }
-    var maxX = Iceway.stations.maxByOrNull { it.x }?.x ?: run {
-        println("Really weird error")
-        0
-    }
-    var minZ = Iceway.stations.minByOrNull { it.z }?.z ?: run {
-        println("Really weird error")
-        0
-    }
-    var maxZ = Iceway.stations.maxByOrNull { it.z }?.z ?: run {
-        println("Really weird error")
-        0
-    }
-
+    // Calculate bounds from line structures to set the default camera view
     Iceway.lines.forEach { line ->
         val nodes = listOf(line.start, line.end) + line.turns
         nodes.forEach { (x, z) ->
@@ -53,75 +31,47 @@ fun main() {
         }
     }
 
-    // image variables
-    val padding = 200
-
-    val worldWidth = (maxX - minX).toDouble()
-    val worldHeight = (maxZ - minZ).toDouble()
-
-    // scaling
-    val maxDim = 4000.0
-    val scale = min(
-        (maxDim - 2 * padding) / worldWidth,
-        (maxDim - 2 * padding) / worldHeight
-    )
-
-    val imgWidth = (worldWidth * scale).toInt() + 2 * padding
-    val imgHeight = (worldHeight * scale).toInt() + 2 * padding
-
-    fun mapX(worldX: Int): Int = padding + ((worldX - minX) * scale).toInt()
-    fun mapZ(worldZ: Int): Int = padding + ((worldZ - minZ) * scale).toInt()
-
-    // setup image
-    val image = BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB)
-    val g2d = image.createGraphics()
-
-    // anti-aliasing for good text
-    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
-    g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON)
-
-    // background
-    g2d.color = Color(30, 30, 30)
-    g2d.fillRect(0, 0, imgWidth, imgHeight)
-
-    // draw lines
-    g2d.stroke = BasicStroke(16f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)
-    Iceway.lines.forEach { line ->
-        g2d.color = line.color
-        val segments = line.toSegments()
-        segments.forEach { segment ->
-            val x1 = mapX(segment.startX)
-            val z1 = mapZ(segment.startZ)
-            val x2 = mapX(segment.endX)
-            val z2 = mapZ(segment.endZ)
-            g2d.drawLine(x1, z1, x2, z2)
+    val linesArray = buildJsonArray {
+        Iceway.lines.forEach { line ->
+            add(buildJsonObject {
+                // Convert java.awt.Color to HTML Hex
+                put("color", String.format("#%02x%02x%02x", line.color.red, line.color.green, line.color.blue))
+                put("segments", buildJsonArray {
+                    line.toSegments().forEach { segment ->
+                        add(buildJsonObject {
+                            put("x1", segment.startX)
+                            put("z1", segment.startZ)
+                            put("x2", segment.endX)
+                            put("z2", segment.endZ)
+                        })
+                    }
+                })
+            })
         }
     }
 
-    // draw stations
-    val font = Font("SansSerif", Font.BOLD, 32)
-    g2d.font = font
-    val fontMetrics = g2d.fontMetrics
-
-    Iceway.stations.forEach { station ->
-        val px = mapX(station.snap().first)
-        val pz = mapZ(station.snap().second)
-
-        // draw the dot
-        val dotRadius = 12
-        g2d.color = Color.WHITE
-        g2d.fillOval(px - dotRadius, pz - dotRadius, dotRadius * 2, dotRadius * 2)
-
-        // draw dot border
-        g2d.stroke = BasicStroke(4f)
-        g2d.color = Color.BLACK
-        g2d.drawOval(px - dotRadius, pz - dotRadius, dotRadius * 2, dotRadius * 2)
+    val stationsArray = buildJsonArray {
+        Iceway.stations.forEach { station ->
+            val snapped = station.snap()
+            add(buildJsonObject {
+                put("name", station.name)
+                put("x", snapped.first)
+                put("z", snapped.second)
+                put("color", String.format("#%02x%02x%02x", station.line.red, station.line.green, station.line.blue))
+                put("division", station.region.name)
+            })
+        }
     }
 
-    g2d.dispose()
+    val finalJson = buildJsonObject {
+        put("minX", minX)
+        put("maxX", maxX)
+        put("minZ", minZ)
+        put("maxZ", maxZ)
+        put("lines", linesArray)
+        put("stations", stationsArray)
+    }
 
-    // present output
-    val success = ImageIO.write(image, "png", outputFile)
-    if (!success) throw RuntimeException("Failed to write to image.")
-    println("SUCCESS: Image generated at ${outputFile.absolutePath}")
+    outputFile.writeText(finalJson.toString())
+    println("SUCCESS: Map data generated at ${outputFile.absolutePath}")
 }
