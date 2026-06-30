@@ -144,7 +144,7 @@
       {
         "name": "%FLAG_TERMINUS_END%",
         "x": -13816,
-        "Z": -40
+        "z": -40
       }
     ],
     "PURPLE": [
@@ -156,8 +156,7 @@
       {
         "name": "Northeast swamp",
         "x": -13544,
-        "z": -1294,
-        "%FLAG%": "TERMINUS_START"
+        "z": -1294
       },
       {
         "name": "Snowmerville",
@@ -242,6 +241,11 @@
         "name": "Stronghold central",
         "x": -170,
         "z": -210
+      },
+      {
+        "name":"%FLAG_TERMINUS_END%",
+        "x": -172,
+        "z": -216
       }
     ],
     "CYAN": [
@@ -297,7 +301,7 @@
     ],
     "GRAY": [
       {
-        "name": "%TERMINUS_FLAG_START%",
+        "name": "%FLAG_TERMINUS_START%",
         "x": -2136,
         "z": -124
       },
@@ -307,7 +311,7 @@
         "z": -124
       },
       {
-        "name": "%TERMINUS_FLAG_END%",
+        "name": "%FLAG_TERMINUS_END%",
         "x": -2136,
         "z": -40
       }

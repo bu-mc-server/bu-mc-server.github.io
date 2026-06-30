@@ -81,15 +81,9 @@ object Iceway {
                     // flags should be passed as a name if no station exists at that spot
                     // flags should be passed as another parameter if a station exists at that spot
                     when (name) {
-                        "%FLAG_TURN%" -> {
-                            lineObj?.turn(x, z)
-                        }
-                        "%FLAG_TERRMINUS_START%" -> {
-                            lineObj?.start(x, z)
-                        }
-                        "%FLAG_TERRMINUS_END%" -> {
-                            lineObj?.end(x, z)
-                        }
+                        "%FLAG_TURN%" -> lineObj?.turn(x, z)
+                        "%FLAG_TERMINUS_START%" -> lineObj?.start(x, z)
+                        "%FLAG_TERMINUS_END%" -> lineObj?.end(x, z)
                         else -> {
                             lineObj?.station(name, x, z, line, region)
                             put(name, x, z, line, region)

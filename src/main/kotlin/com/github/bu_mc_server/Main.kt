@@ -22,11 +22,6 @@ fun main() {
     if (!outputDir.exists()) outputDir.mkdirs()
     val outputFile = File(outputDir, "iceway_map.png")
 
-    // image variables
-    val imgWidth = 4000
-    val imgHeight = 4000
-    val padding = 200
-
 
     // gather bounds
     var minX = Iceway.stations.minByOrNull { it.x }?.x ?: run {
@@ -58,14 +53,21 @@ fun main() {
         }
     }
 
+    // image variables
+    val padding = 200
+
     val worldWidth = (maxX - minX).toDouble()
     val worldHeight = (maxZ - minZ).toDouble()
 
     // scaling
+    val maxDim = 4000.0
     val scale = min(
-        (imgWidth - 2 * padding) / worldWidth,
-        (imgHeight - 2 * padding) / worldHeight
+        (maxDim - 2 * padding) / worldWidth,
+        (maxDim - 2 * padding) / worldHeight
     )
+
+    val imgWidth = (worldWidth * scale).toInt() + 2 * padding
+    val imgHeight = (worldHeight * scale).toInt() + 2 * padding
 
     fun mapX(worldX: Int): Int = padding + ((worldX - minX) * scale).toInt()
     fun mapZ(worldZ: Int): Int = padding + ((worldZ - minZ) * scale).toInt()

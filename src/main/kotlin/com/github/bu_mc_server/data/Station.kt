@@ -17,32 +17,32 @@ data class Station(
      * Finds the closest segment to the given station, and projects to that segment.
      */
     fun snap(): Pair<Int, Int> {
+        val lineObj = Iceway.line(this.line) ?: return this.x to this.z
+        val segments = lineObj.toSegments()
+
         val containingSegments: MutableList<Segment> = mutableListOf()
-        Iceway.lines.map { it.toSegments() }.forEach { segmentList ->
-            segmentList.forEach { segment ->
-                if (segment.containsX(this.x)) {
-                    containingSegments.add(segment)
-                }
-                if (segment.containsZ(this.z)) {
-                    containingSegments.add(segment)
-                }
-            }
-            val snapSegment = containingSegments.map { segment ->
-                if (segment.isHorizontal) {
-                    segment to abs(segment.startZ - this.z)
-                } else { // segment.isVertical == true
-                    segment to abs(segment.startX - this.x)
-            }
-            }.minByOrNull { it.second }?.first ?: run {
-                println("CRITICAL ERROR: Station $name failed to snap to any segment.")
-                return 0 to 0
-            }
-            return if (snapSegment.isHorizontal) {
-                this.x to snapSegment.startZ
-            } else { // snapSegment.isVertical == true
-                snapSegment.startX to this.z
-            }
+
+        segments.forEach { segment ->
+            if (segment.containsX(this.x)) containingSegments.add(segment)
+            if (segment.containsZ(this.z)) containingSegments.add(segment)
         }
-        return 0 to 0
+
+        val snapSegment = containingSegments.map { segment ->
+            if (segment.isHorizontal) {
+                segment to abs(segment.startZ - this.z)
+            } else { // snapSegment.isVertical
+                segment to abs(segment.startX - this.x)
+            }
+        }.minByOrNull { it.second }?.first ?: run {
+            println("CRITICAL ERROR: Station $name failed to snap to any segment.")
+            // fallback to actual coords
+            return this.x to this.z
+        }
+
+        return if (snapSegment.isHorizontal) {
+            this.x to snapSegment.startZ
+        } else { // snapSegment.isVertical
+            snapSegment.startX to this.z
+        }
     }
 }
