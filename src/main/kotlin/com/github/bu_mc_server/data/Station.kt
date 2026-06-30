@@ -8,16 +8,28 @@ data class Station(
     val name: String,
     val x: Int,
     val z: Int,
-    val line: Color,
+    val lineName: String,
+    val lineColor: Color,
     val region: Region
 ) {
     fun coords(): Pair<Int, Int> = x to z
 
     /**
+     * Returns the line name formatted normally, instead of in all caps and with underscores
+     */
+    fun presentName(): String {
+        var name = this.lineName.first().toString()
+        this.lineName.drop(1).forEach {
+            name += it.lowercase()
+        }
+        return name
+    }
+
+    /**
      * Finds the closest segment to the given station, and projects to that segment.
      */
     fun snap(): Pair<Int, Int> {
-        val lineObj = Iceway.line(this.line) ?: return this.x to this.z
+        val lineObj = Iceway.line(this.lineName) ?: return this.x to this.z
         val segments = lineObj.toSegments()
 
         val containingSegments: MutableList<Segment> = mutableListOf()

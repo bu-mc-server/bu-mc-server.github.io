@@ -4,6 +4,7 @@ import com.github.bu_mc_server.drawing.Segment
 import java.awt.Color
 
 data class Line(
+    val name: String,
     val color: Color,
     val stations: MutableList<Station> = mutableListOf(),
     var start: Pair<Int, Int> = 0 to 0,
@@ -13,8 +14,8 @@ data class Line(
     /**
      * Adds a station to the list of stations
      */
-    fun station(name: String, x: Int, z: Int, line: Color, region: Region) {
-        stations.add(Station(name, x, z, line, region))
+    fun station(name: String, x: Int, z: Int, lineName: String, lineColor: Color, region: Region) {
+        stations.add(Station(name, x, z, lineName, lineColor, region))
     }
 
     /**

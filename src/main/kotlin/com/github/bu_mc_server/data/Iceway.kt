@@ -49,13 +49,13 @@ object Iceway {
             val region = regionName.toRegion()
 
             regionElement.jsonObject.forEach { (lineName, lineElement) ->
-                val line = lineName.toColor()
+                val lineColor = lineName.toColor()
 
-                if (lines.find { it.color == line } == null) {
-                    lines.add(Line(line))
+                if (lines.find { it.name == lineName } == null) {
+                    lines.add(Line(lineName, lineColor))
                 }
 
-                val lineObj: Line? = lines.find { it.color == line }
+                val lineObj: Line? = lines.find { it.name == lineName }
 
 
 
@@ -63,7 +63,7 @@ object Iceway {
                     val stationObj = stationElement.jsonObject
 
                     val name = stationObj["name"]?.jsonPrimitive?.content ?: run {
-                        println("No name passed for a station on line $line$")
+                        println("No name passed for a station on line $lineName$")
                         "UNKNOWN"
                     }
                     val x = stationObj["x"]?.jsonPrimitive?.int ?: run {
@@ -85,8 +85,8 @@ object Iceway {
                         "%FLAG_TERMINUS_START%" -> lineObj?.start(x, z)
                         "%FLAG_TERMINUS_END%" -> lineObj?.end(x, z)
                         else -> {
-                            lineObj?.station(name, x, z, line, region)
-                            put(name, x, z, line, region)
+                            lineObj?.station(name, x, z, lineName, lineColor, region)
+                            put(name, x, z, lineName, lineColor, region)
                         }
                     }
                 }
@@ -100,8 +100,8 @@ object Iceway {
     /**
      * Wrapper for adding stations to [Iceway.stations]
      */
-    fun put(name: String, x: Int, z: Int, line: Color, region: Region) {
-        stations.add(Station(name, x, z, line, region))
+    fun put(name: String, x: Int, z: Int, lineName: String, lineColor: Color, region: Region) {
+        stations.add(Station(name, x, z, lineName, lineColor, region))
     }
 
     /**
@@ -159,5 +159,5 @@ object Iceway {
         else -> Region.WEST
     }
 
-    fun line(line: Color): Line? = lines.find { it.color == line }
+    fun line(name: String): Line? = lines.find { it.name == name }
 }

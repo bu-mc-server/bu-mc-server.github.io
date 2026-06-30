@@ -9,13 +9,29 @@
 </head>
 <body>
 
+<header id="title-bar">
+    <h1>Iceway Transit System</h1>
+    <nav>
+        <a href="#">Map</a>
+    </nav>
+</header>
+
 <div id="controls">
-    <label for="division-select">Division: </label>
-    <select id="division-select">
-        <option value="ALL">All Divisions</option>
-        <option value="WEST">West Division</option>
-        <option value="EAST">East Division</option>
-    </select>
+    <div style="margin-bottom: 10px;">
+        <label for="division-select">Division: </label>
+        <select id="division-select">
+            <option value="ALL">All Divisions</option>
+            <option value="WEST">West Division</option>
+            <option value="EAST">East Division</option>
+        </select>
+    </div>
+    <div style="margin-top: 10px;">
+        <label for="popup-mode">Label style: </label>
+        <select id="popup-mode">
+            <option value="ATTACHED">Attached</option>
+            <option value="FIXED">Bottom Right</option>
+        </select>
+    </div>
 </div>
 
 <div id="map-container">

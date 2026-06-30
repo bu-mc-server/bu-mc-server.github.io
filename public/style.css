@@ -6,6 +6,27 @@ body {
     color: white;
 }
 
+#title-bar {
+    height: 60px;
+    background-color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #444;
+    justify-content: space-between;
+}
+
+#title-bar h1 {
+    font-size: 20px;
+    margin: 0px;
+}
+
+#title-bar nav a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
 #map-container {
     width: 100vw;
     height: 100vh;
@@ -18,12 +39,13 @@ body {
 
 #controls {
     position: absolute;
-    top: 20px;
+    top: 80px;
     left: 20px;
     background: rgba(0, 0, 0, 0.7);
     padding: 15px;
     border-radius: 8px;
     border: 1px solid #444;
+    z-index: 10;
 }
 
 select {
