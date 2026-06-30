@@ -1,13 +1,18 @@
 package com.github.bu_mc_server
 
+import com.github.bu_mc_server.data.Iceway
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+ */
 fun main() {
+
+    Iceway.init()
+
     val outputDir = File("public")
     if (!outputDir.exists()) outputDir.mkdirs()
 

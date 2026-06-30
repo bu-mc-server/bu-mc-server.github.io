@@ -1,0 +1,316 @@
+{
+  "West": {
+    "PINK": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13764,
+        "z": 40
+      },
+      {
+        "name": "Cherry town and hoglin farm",
+        "x": -13764,
+        "z": 46
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -13816,
+        "z": 40
+      }
+    ],
+    "ORANGE": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13308,
+        "z": -200
+      },
+      {
+        "name": "Unknown cave",
+        "x": -13404,
+        "z": -194
+      },
+      {
+        "name": "Mooshrooms west",
+        "x": -13614,
+        "z": -206
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -13816,
+        "z": -200
+      }
+    ],
+    "YELLOW": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13272,
+        "z": -800
+      },
+      {
+        "name": "Mangrove swamp",
+        "x": -13278,
+        "z": -798
+      },
+      {
+        "name": "%FLAG_TURN%",
+        "x": -13272,
+        "z": -680
+      },
+      {
+        "name": "Bedrockport",
+        "x":-13414,
+        "z": -674
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -13816,
+        "z": -680
+      }
+    ],
+    "GREEN": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13816,
+        "z": -1288
+      },
+      {
+        "name": "Snowmerville gunpowder farm",
+        "x": -13822,
+        "z": -1042
+      },
+      {
+        "name": "Mosston",
+        "x": -13810,
+        "z": -122
+      },
+      {
+        "name": "%FLAG_TURN%",
+        "x": -13816,
+        "z": 152
+      },
+      {
+        "name": "Callum's pillager farm",
+        "x": -14042,
+        "z": 146
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -14042,
+        "z": 152
+      }
+    ],
+    "LIGHT_BLUE": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13816,
+        "z": -344
+      },
+      {
+        "name": "gold farm",
+        "x": -13838,
+        "z": -339
+      },
+      {
+        "name": "The pit",
+        "x": -13934,
+        "z": -350
+      },
+      {
+        "name": "%FLAG_TURN%",
+        "x": -13976,
+        "z": -344
+      },
+      {
+        "name": "Iceberg coast",
+        "x": -13970,
+        "z": -560
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -13976,
+        "z": -560
+      }
+    ],
+    "BLUE": [
+      {
+        "name": "Better",
+        "x": -11731,
+        "z": -46
+      },
+      {
+        "name": "Magma cube farm",
+        "x": -13288,
+        "z": -45
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -13816,
+        "Z": -40
+      }
+    ],
+    "PURPLE": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13542,
+        "z": -1288
+      },
+      {
+        "name": "Northeast swamp",
+        "x": -13544,
+        "z": -1294,
+        "%FLAG%": "TERMINUS_START"
+      },
+      {
+        "name": "Snowmerville",
+        "x": -13862,
+        "z": -1294
+      },
+      {
+        "name": "%FLAG_TURN%",
+        "x": -14840,
+        "z": -1288
+      },
+      {
+        "name": "Larpville",
+        "x": -14834,
+        "z": -1624
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -14840,
+        "z": -1624
+      }
+    ],
+    "LIGHT_GRAY": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13308,
+        "z": -300
+      },
+      {
+        "name": "Froglight farm",
+        "x": -13303,
+        "z": -300
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -13308,
+        "z": -40
+      }
+    ],
+    "BLACK": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -13032,
+        "z": -40
+      },
+      {
+        "name": "Witch farm",
+        "x": -13038,
+        "z": 262
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -13032,
+        "z": 262
+      }
+    ]
+  },
+
+  "East": {
+    "RED": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": 296,
+        "z": -40
+      },
+      {
+        "name": "Xunfeng's raid farm",
+        "x": 290,
+        "z": -196
+      },
+      {
+        "name": "%FLAG_TURN%",
+        "x": 296,
+        "z": -216
+      },
+      {
+        "name": "Omen farm",
+        "x": 200,
+        "z": -222
+      },
+      {
+        "name": "Stronghold central",
+        "x": -170,
+        "z": -210
+      }
+    ],
+    "CYAN": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": 136,
+        "z": -216
+      },
+      {
+        "name": "Xunfeng's base",
+        "x": 142,
+        "z": 44
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": 136,
+        "z": 46
+      }
+    ],
+    "LIME": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": -56,
+        "z": -216
+      },
+      {
+        "name": "Gold farm east",
+        "x": -61,
+        "z": 38
+      },
+      {
+        "name": "%FLAG_TERMINUS_END%",
+        "x": -56,
+        "z": 38
+      }
+    ],
+    "BLUE": [
+      {
+        "name": "%FLAG_TERMINUS_START%",
+        "x": 296,
+        "z": -40
+      },
+      {
+        "name": "HOMO-1 oil rig",
+        "x": 286,
+        "z": -34
+      },
+      {
+        "name": "Turtle island",
+        "x": -22,
+        "z": -34
+      }
+    ],
+    "GRAY": [
+      {
+        "name": "%TERMINUS_FLAG_START%",
+        "x": -2136,
+        "z": -124
+      },
+      {
+        "name": "Stronghold west",
+        "x": -2130,
+        "z": -124
+      },
+      {
+        "name": "%TERMINUS_FLAG_END%",
+        "x": -2136,
+        "z": -40
+      }
+    ]
+  }
+}
